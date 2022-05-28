@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>http缓存——强缓存与协商缓存 | 欢迎来玩~~</title>
+
+  <!-- keywords -->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="http缓存是一个重要的web性能优化手段。利用http缓存，浏览器请求资源的时候并不总是需要通过http请求向服务器获取，在某些情况下可以直接使用缓存获取资源，减少客户端等待时间和网络流量，也能缓解服务器的压力。http缓存可以分为强缓存和协商缓存。 强缓存顾名思义，即强制使用缓存。使用这种方式，浏览器请求资源的时候无需发送request请求，而是可以从缓存中获取。与强缓存有关的头部字段是Exp">
+<meta property="og:type" content="article">
+<meta property="og:title" content="http缓存——强缓存与协商缓存">
+<meta property="og:url" content="http://example.com/2022/05/28/article4/article/index.html">
+<meta property="og:site_name" content="欢迎来玩~~">
+<meta property="og:description" content="http缓存是一个重要的web性能优化手段。利用http缓存，浏览器请求资源的时候并不总是需要通过http请求向服务器获取，在某些情况下可以直接使用缓存获取资源，减少客户端等待时间和网络流量，也能缓解服务器的压力。http缓存可以分为强缓存和协商缓存。 强缓存顾名思义，即强制使用缓存。使用这种方式，浏览器请求资源的时候无需发送request请求，而是可以从缓存中获取。与强缓存有关的头部字段是Exp">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-05-28T14:27:06.000Z">
+<meta property="article:modified_time" content="2022-05-28T14:51:54.046Z">
+<meta property="article:author" content="Zheng">
+<meta property="article:tag" content="http缓存">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternative" href="/atom.xml" title="欢迎来玩~~" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+
+  
+<script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+
+  
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+				<img lazy-src="/img/avatar.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+			<h1 class="header-author"><a href="/">Zheng</a></h1>
+		</hgroup>
+
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">Home</a></li>
+				        
+							<li><a href="/archives">Archives</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="half-header-menu">
+						<a class="hide">Home</a>
+						<a>Tags</a>
+						<a>Links</a>
+						<a>About</a>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+						</div>
+						<!-- music -->
+						
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Hexo%E5%9B%BE%E7%89%87/" style="font-size: 10px;">Hexo图片</a> <a href="/tags/Vue%E3%80%81%E8%99%9A%E6%8B%9FDOM/" style="font-size: 10px;">Vue、虚拟DOM</a> <a href="/tags/http%E7%BC%93%E5%AD%98/" style="font-size: 10px;">http缓存</a> <a href="/tags/%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/" style="font-size: 10px;">构造函数</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/">github</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">科软在读，欢迎交流~</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide"></h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/avatar.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author"></h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">Home</a></li>
+		        
+					<li><a href="/archives">Archives</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-article4/article" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2022/05/28/article4/article/" class="article-date">
+  	<time datetime="2022-05-28T14:27:06.000Z" itemprop="datePublished">2022-05-28</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      http缓存——强缓存与协商缓存
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/http%E7%BC%93%E5%AD%98/" rel="tag">http缓存</a></li></ul>
+	</div>
+
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>http缓存是一个重要的web性能优化手段。利用http缓存，浏览器请求资源的时候并不总是需要通过http请求向服务器获取，在某些情况下可以直接使用缓存获取资源，减少客户端等待时间和网络流量，也能缓解服务器的压力。http缓存可以分为强缓存和协商缓存。</p>
+<h3 id="强缓存"><a href="#强缓存" class="headerlink" title="强缓存"></a>强缓存</h3><p>顾名思义，即强制使用缓存。使用这种方式，浏览器请求资源的时候无需发送request请求，而是可以从缓存中获取。与强缓存有关的头部字段是<code>Expires</code>和<code>cache-control</code>。</p>
+<span id="more"></span>
+
+<p><code>Expires</code>是http1.0的产物，使用强缓存时，浏览器第一次请求资源时，响应包头部的<code>Expires</code>字段会存入一个时间，这个时间值是绝对时间，浏览器收到以后将它保存下来。将来再一次访问该资源时，将保存下来的绝对时间与当前计算机的时间对比，如果当前时间小于这个绝对时间，那么就强制使用缓存，无需发送http请求。这种方式存在漏洞，因为计算机当前时间可以随意修改。</p>
+<p><code>cache-control</code>是http1.1的产物，如果<code>cache-control</code>和<code>Expires</code>同时存在，那么<code>cache-control</code>优先级更高。与<code>Expires</code>有所不同的是，响应包中与<code>cache-control</code>有关的字段<code>Max-age</code>设置的是相对时间，浏览器收到以后，把该字段的值和收到这个响应包的时间都保存下来。下一次要访问这个资源的时候，将当前时间减去收到响应包的时间，如果差值小于<code>cache-control</code>所指定的过期时间，那么就可以使用缓存。</p>
+<p><code>cache-control</code>有很多属性，不同属性代表的意义也有所不同。</p>
+<p>可缓存性：</p>
+<ul>
+<li><code>public</code>：表明响应可以被任何对象（包括：发送请求的客户端，代理服务器，等等）缓存。</li>
+<li><code>private</code> 表明响应只能被单个用户缓存，不能作为共享缓存（即代理服务器不能缓存它）。</li>
+<li><code>no-cache</code> 不使用强缓存，需要与服务器验协商缓存验证。</li>
+<li><code>no-store</code> 缓存不应存储有关客户端请求或服务器响应的任何内容，即不使用任何缓存。</li>
+</ul>
+<p>过期时间：</p>
+<ul>
+<li><code>max-age=&lt;seconds&gt;</code> 缓存存储的最大周期，超过这个周期被认为过期。</li>
+<li><code>s-maxage=&lt;seconds&gt;</code> 设置共享缓存。会覆盖<code>max-age</code>和<code>expires</code>,私有缓存会忽略它。</li>
+<li><code>max-stale[=&lt;seconds&gt;]</code> 客户端愿意接收一个已经过期的资源，可以设置一个可选的秒数，表示响应不能已经过时超过该给定的时间。</li>
+<li><code>min-fresh=&lt;seconds&gt;</code> 客户端希望在指定的时间内获取最新的响应。</li>
+</ul>
+<h3 id="协商缓存"><a href="#协商缓存" class="headerlink" title="协商缓存"></a>协商缓存</h3><p>协商缓存表示，浏览器是否能够使用缓存直接获取资源，需要和服务器进行协商。主要使用到的头部字段有两组：<code>Last-Modified</code>/<code>If-Modified-Since</code>和<code>Etag</code>/<code>If-None-Match</code>。</p>
+<p><code>Last-Modified</code>/<code>If-Modified-Since</code>：</p>
+<p>服务器响应浏览器时，会在<code>Last-Modified</code>中给出资源的最后修改时间。浏览器收到后将这一值保存下来，下一次要访问资源的时候，把这个值放在请求包头部的<code>If-Modified-Since</code>字段中，发送给服务器。服务器根据这个值与本地记录的资源的最后修改时间作对比，如果相等，说明资源没有被修改过，返回响应包的状态码为<code>304 No Modified</code>，浏览器可以直接使用缓存；否则，返回<code>200 OK</code>，并返回浏览器所请求的资源。</p>
+<p><code>Last-Modified</code>的时间单位为秒，因此如果在一秒内对资源做出了修改，那么服务器可能感受不到。</p>
+<p><code>Etag</code>/<code>If-None-Match</code>：</p>
+<p>每一份资源都有唯一的<code>Etag</code>值，就像它的身份标识，并且资源的内容发生了改变，<code>Etag</code>值也会发生改变。在浏览器发起请求，浏览器的请求报文头会包含 <code>If-None-Match</code> 字段，其值为上次返回的<code>Etag</code>发送给服务器，服务器接收到次报文后发现 <code>If-None-Match</code> 则与被请求资源的唯一标识进行对比。如果相同说明资源没有修改，则响应返 304，浏览器直接从缓存中获取数据信息。如果不同则说明资源被改动过，则响应整个资源内容，返回状态码 200。</p>
+<p><code>Etag</code>/<code>If-None-Match</code>的优先级比<code>Last-Modified</code>/<code>If-Modified-Since</code>优先级高，并且精度也更高。但是因为资源发生了改变就需要计算Etag值，所以也很耗费计算资源。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2022/05/03/article3/article/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">虚拟DOM</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2022 Zheng
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/preccrep/hexo-theme-jelly" target="_blank">Jelly</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+
+<script src="/js/main.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
