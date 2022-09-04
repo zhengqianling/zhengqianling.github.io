@@ -86,7 +86,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/Hexo%E5%9B%BE%E7%89%87/" style="font-size: 10px;">Hexo图片</a> <a href="/tags/Vue%E3%80%81%E8%99%9A%E6%8B%9FDOM/" style="font-size: 10px;">Vue、虚拟DOM</a> <a href="/tags/http%E7%BC%93%E5%AD%98/" style="font-size: 10px;">http缓存</a> <a href="/tags/%E5%AE%9A%E6%97%B6%E5%99%A8/" style="font-size: 10px;">定时器</a> <a href="/tags/%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/" style="font-size: 10px;">构造函数</a>
+						<a href="/tags/Hexo%E5%9B%BE%E7%89%87/" style="font-size: 10px;">Hexo图片</a> <a href="/tags/Vue%E3%80%81%E8%99%9A%E6%8B%9FDOM/" style="font-size: 10px;">Vue、虚拟DOM</a> <a href="/tags/http%E7%BC%93%E5%AD%98/" style="font-size: 10px;">http缓存</a> <a href="/tags/%E4%BD%9C%E7%94%A8%E5%9F%9F%E3%80%81%E9%97%AD%E5%8C%85%E3%80%81RHS%E3%80%81LHS/" style="font-size: 10px;">作用域、闭包、RHS、LHS</a> <a href="/tags/%E5%AE%9A%E6%97%B6%E5%99%A8/" style="font-size: 10px;">定时器</a> <a href="/tags/%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/" style="font-size: 10px;">构造函数</a> <a href="/tags/%E9%98%B2%E6%8A%96%E3%80%81%E8%8A%82%E6%B5%81/" style="font-size: 10px;">防抖、节流</a>
 					</div>
 				</section>
 				
@@ -147,6 +147,135 @@
 	</div>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-article7/article" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2022/09/04/article7/article/" class="article-date">
+  	<time datetime="2022-09-04T13:40:01.000Z" itemprop="datePublished">2022-09-04</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/09/04/article7/article/">
+        你不知道的JavaScript（上）——作用域与闭包
+        
+      </a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="第一章-作用域是什么"><a href="#第一章-作用域是什么" class="headerlink" title="第一章 作用域是什么"></a>第一章 作用域是什么</h4><p>首先介绍三个重要的角色，引擎、编译器、作用域。</p>
+<ul>
+<li>引擎——从头到尾负责整个JavaScript程序的编译及执行过程。</li>
+<li>编译器——负责语法分析及代码生成等脏活累活。</li>
+<li>作用域——负责收集并维护由所有声明的标识符（变量）组成的一系列查询，并实施一套非常严格的规则，确定当前执行的代码对这些标识符的访问权限。</li>
+</ul>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BD%9C%E7%94%A8%E5%9F%9F%E3%80%81%E9%97%AD%E5%8C%85%E3%80%81RHS%E3%80%81LHS/" rel="tag">作用域、闭包、RHS、LHS</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+      
+        <p class="article-more-link">
+          <a  href="/2022/09/04/article7/article/#more">learn more >></a>
+        </p>
+      
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
+    <article id="post-article6/article" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2022/09/04/article6/article/" class="article-date">
+  	<time datetime="2022-09-04T13:11:36.000Z" itemprop="datePublished">2022-09-04</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/09/04/article6/article/">
+        防抖与节流
+        
+      </a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>防抖和节流是优化高频率执行代码的一种手段。比如，浏览器的resize、scroll、mousemove等事件触发时，会不断调用绑定在事件上的回调函数，非常浪费资源，影响前端性能，因此就需要控制这些回调函数的执行频率。</p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%98%B2%E6%8A%96%E3%80%81%E8%8A%82%E6%B5%81/" rel="tag">防抖、节流</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+      
+        <p class="article-more-link">
+          <a  href="/2022/09/04/article6/article/#more">learn more >></a>
+        </p>
+      
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
   
     <article id="post-article5/article5" class="article article-type-post" itemscope itemprop="blogPost">
   
